@@ -4,53 +4,68 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Entity Player
-public List<Entity> CurrentEnemies = new()
+    public Entity Player;
+    public List<Entity> CurrentEnemies = new();
 
+    public Entity enemyPrefab1;
+    public Entity enemyPrefab2;
+    public Entity enemyPrefab3;
 
-public Entity enemy_1
-public Entity enemy_2
-public Entity enemy_3
+    public void SpawnEnemies() {
+        var prefab = enemyPrefab1; //спавн врага
 
-//public List<Entity> EnemiesPrefabs = new()
+        Vector3 spawnPos = new Vector3(3, 0, 0); //спавн врага справа
 
-public void SpawnEnemies() {
-    var prefab = enemy_1 //(Любой алгоритм который выдает врага или список врагов)
-    //цикл если врагов много
-   
-    var inst = Instantiate(prefab, /*pos, */)
-    // entity.Restore() если враги уже на сцене
-    inst.Attack.target = Player.Health
+        var inst = Instantiate(prefab, spawnPos, Quaternion.identity); // xz
 
-    enemy_1.Restore()
+        // восстанавливаем здоровье врага
+        inst.Restore();
+        
+         // добавляем в список
+        CurrentEnemies.Add(inst);
 
-    CurrentEnemies.Add(inst)
-
-    Player.Attack.SetTarget(CurrentEnemies[0].GetComponent<Health>)
-    Player.Attack.SetTargets(CurrentEnemies)
-    //Player.Attack.SetTarget(inst)
-
-}
-
-public void StartBattle() {
-    StartCoroutine(Battle())
-}
-
-private IEnumerator Battle() {
-
-    while (Player.Health > 0 || CurrentEnemies.Count > 0) {
-        Player.Attack.MakeATurn()
-        yield new WaitForSeconds(0.5)
-
-        foreach (e in CurrentEnemies) {
-            e.Attack.MakeATurn()
-            yield new WaitForSeconds(0.5)
-        }        
+        // настраиваем таргеты
+        inst.Attack.SetTarget(Player.Health);
+        Player.Attack.SetTargets(CurrentEnemies);
     }
 
-    // load ui
-    // show shop 
-    
-}
+// Запуск боя
+    public void StartBattle()
+    {
+        StartCoroutine(Battle());
+    }
 
+    private IEnumerator Battle()
+    {
+        while (Player.Health.CurrentHP > 0 && CurrentEnemies.Count > 0)
+        {
+            // Ход игрока
+            Player.Attack.MakeATurn();
+            yield return new WaitForSeconds(0.5f);
+
+            // Ходы врагов
+            foreach (var e in CurrentEnemies)
+            {
+                if (e.Health.CurrentHP > 0)
+                {
+                    e.Attack.MakeATurn();
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
+            // Убираем мёртвых врагов
+            CurrentEnemies.RemoveAll(e => e.Health.CurrentHP <= 0);
+    }
+
+     // Если игрок жив и врагов нет — победа
+        if (Player.Health.CurrentHP > 0)
+        {
+            Debug.Log("Игрок победил!");
+            // открыть магазин, загрузить UI
+        }
+        else
+        {
+            Debug.Log("Игрок проиграл!");
+            // экран поражения
+        }
+    }
 }
