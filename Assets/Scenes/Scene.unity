@@ -246,8 +246,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 5.07, y: -0.0000561754}
+  m_SizeDelta: {x: 7.3, y: 295.55}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &135797797
 MonoBehaviour:
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 223640166}
   - component: {fileID: 223640165}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1192,8 +1192,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015259, y: -0.0000038146973}
-  m_SizeDelta: {x: 507.52, y: 136.28}
+  m_AnchoredPosition: {x: 0.000015259, y: -1.9}
+  m_SizeDelta: {x: 507.52, y: 125.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1863834988
 MonoBehaviour:
@@ -1521,7 +1521,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 815090929212678860, guid: 3d7070b045953e84ab537c4a0106253c, type: 3}
       propertyPath: Damage
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 960989453725115100, guid: 3d7070b045953e84ab537c4a0106253c, type: 3}
       propertyPath: m_LocalPosition.x

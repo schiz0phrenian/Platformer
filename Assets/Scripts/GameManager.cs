@@ -59,11 +59,11 @@ public class GameManager : MonoBehaviour
                 if (PlayerMovement != null)
                     PlayerMovement.PlayAttack(targetEnemy.transform.position);
 
-                // Ждём немного, чтобы движение успело начаться
+
                 yield return new WaitForSeconds(0.5f);
 
                 Player.Attack.MakeATurn();
-                battleLog.AddMessage($"Игрок нанес {Player.Attack.Damage} урона!");
+                battleLog.AddMessage($" - Вы нанесли {Player.Attack.Damage} урона");
 
                 yield return new WaitForSeconds(0.5f);
         }
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
                     yield return new WaitForSeconds(0.5f);
 
                     e.Attack.MakeATurn();
-                    battleLog.AddMessage($"{e.name} нанес {e.Attack.Damage} урона!");
+                    battleLog.AddMessage($"{e.name} нанес вам {e.Attack.Damage} урона!");
 
                     yield return new WaitForSeconds(0.5f);
                 }
@@ -92,12 +92,12 @@ public class GameManager : MonoBehaviour
 
         if (Player.Health.CurrentHp > 0)
         {
-            Debug.Log("Игрок победил!");
+            Debug.Log(" - Вы победили!");
             // открыть магазин, загрузить UI
         }
         else
         {
-            Debug.Log("Игрок проиграл!");
+            Debug.Log(" - Вы проиграли!");
             // экран поражения
         }
     }
