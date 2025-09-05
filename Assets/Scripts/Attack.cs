@@ -10,20 +10,22 @@ public class Attack : MonoBehaviour
     public int Damage = 2;
 
     [Header("Цели")]
-    public List<Health> Targets;
+    public List<Health> Targets = new();
     public Health target;
 
 
-    // Событие при смерти текущей цели
     public Action OnTargetDead;
 
+    public void Init(int damage)
+    {
+        Damage = damage;
+    }
 
-    // Совершить ход (наносим урон текущей цели)
     public void MakeATurn()
     {
         if (target == null) return;
         target.TakeDamage(Damage);
-        if (target.CurrentHealth <= 0)
+        if (target.CurrentHp <= 0)
         {
             // цель погибла
             OnTargetDead?.Invoke();
@@ -39,8 +41,6 @@ public class Attack : MonoBehaviour
             target = null;
         }
     }
-
-
 
      // Задать одну цель
     public void SetTarget(Health target)

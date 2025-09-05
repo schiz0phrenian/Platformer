@@ -7,15 +7,20 @@ public class Entity : MonoBehaviour
     public Health Health;
     public Attack Attack;
 
-public void Restore() 
+
+    //Восстановления состояния
+    public void Restore()
     {
-    Health.Value = Health.MaxValue
-    sprite.play("Default")
-    gameObject.SetActive(true);
+        if (Health != null)
+        {
+            Health.Restore();
+        }
+        gameObject.SetActive(false);
     }
+    
     
     public void OnTargetDead()
     {
-
+        Debug.Log($"{gameObject.name}: моя цель мертва!");
     }
 }

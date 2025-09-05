@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events; 
 
 public class Health : MonoBehaviour
 {
     [Header("Параметры здоровья")]
     public int MaxHealth = 10;
-    public int CurrentHealth;
+    public int CurrentHp;
 
     [Header("События")]
     public UnityEvent OnDeath;
@@ -16,24 +17,30 @@ public class Health : MonoBehaviour
     public void Awake()
     {
         //В начале игры максимальное хп
-        CurrentHealth = MaxHealth;
+        CurrentHp = MaxHealth;
+    }
+
+    public void Init(int maxHealth)
+    {
+        MaxHealth = maxHealth;
+        CurrentHp = MaxHealth;
     }
 
     public void TakeDamage(int damage)
     {
-        CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
+        CurrentHp -= damage;
+        if (CurrentHp <= 0)
         {
-            CurrentHealth = 0;
+            CurrentHp = 0;
             Die();
         }
     }
 
-    //Восстановление
     public void Restore()
     {
-        CurrentHealth = MaxHealth;
+        CurrentHp = MaxHealth;
     }
+    
     public void Die()
     {
         Debug.Log($"{gameObject.name} погиб!");

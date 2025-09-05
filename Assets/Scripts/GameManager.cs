@@ -7,29 +7,39 @@ public class GameManager : MonoBehaviour
     public Entity Player;
     public List<Entity> CurrentEnemies = new();
 
-    public Entity enemyPrefab1;
-    public Entity enemyPrefab2;
-    public Entity enemyPrefab3;
+    public List<SO> EnemyList;//список врагов
+    public AttackMovement PlayerMovement;
+    public BattleLog battleLog;
 
-    public void SpawnEnemies() {
-        var prefab = enemyPrefab1; //спавн врага
 
-        Vector3 spawnPos = new Vector3(3, 0, 0); //спавн врага справа
+    void Start()
+{
+    SpawnEnemies();
+    StartBattle();
+}
+    public void SpawnEnemies()
+    {
+        var enemy = EnemyList[Random.Range(0, EnemyList.Count)]; 
 
-        var inst = Instantiate(prefab, spawnPos, Quaternion.identity); // xz
+        Vector3 spawnPos = new Vector3(5, 0, 0f); 
+        var inst = Instantiate(enemy.prefab, spawnPos, Quaternion.identity); // xz
 
         // восстанавливаем здоровье врага
         inst.Restore();
-        
-         // добавляем в список
-        CurrentEnemies.Add(inst);
 
-        // настраиваем таргеты
+        inst.gameObject.SetActive(true);
+
+        inst.Health.Init(enemy.maxHp);
+        inst.Health.CurrentHp = enemy.maxHp;
+        inst.Attack.Init(enemy.damage);
+        inst.name = enemy.name;
+        CurrentEnemies.Add(inst);
+        
+  
         inst.Attack.SetTarget(Player.Health);
         Player.Attack.SetTargets(CurrentEnemies);
     }
 
-// Запуск боя
     public void StartBattle()
     {
         StartCoroutine(Battle());
@@ -37,27 +47,47 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Battle()
     {
-        while (Player.Health.CurrentHP > 0 && CurrentEnemies.Count > 0)
+        while (Player.Health.CurrentHp> 0 && CurrentEnemies.Count > 0)
         {
             // Ход игрока
-            Player.Attack.MakeATurn();
-            yield return new WaitForSeconds(0.5f);
-
-            // Ходы врагов
-            foreach (var e in CurrentEnemies)
+            if (CurrentEnemies.Count > 0)
             {
-                if (e.Health.CurrentHP > 0)
+                var targetEnemy = CurrentEnemies[0];
+
+                if (PlayerMovement != null)
+                    PlayerMovement.PlayAttack(targetEnemy.transform.position);
+
+                // Ждём немного, чтобы движение успело начаться
+                yield return new WaitForSeconds(0.5f);
+
+                Player.Attack.MakeATurn();
+                battleLog.AddMessage($"Игрок нанес {Player.Attack.Damage} урона!");
+
+                yield return new WaitForSeconds(0.5f);
+        }
+        
+
+
+    foreach (var e in CurrentEnemies)
+            {
+                if (e.Health.CurrentHp > 0)
                 {
+                    var enemyMovement = e.GetComponent<AttackMovement>();
+
+                    if (enemyMovement != null)
+                        enemyMovement.PlayAttack(Player.transform.position);
+
+                    yield return new WaitForSeconds(0.5f);
+
                     e.Attack.MakeATurn();
+                    battleLog.AddMessage($"{e.name} нанес {e.Attack.Damage} урона!");
+
                     yield return new WaitForSeconds(0.5f);
                 }
             }
-            // Убираем мёртвых врагов
-            CurrentEnemies.RemoveAll(e => e.Health.CurrentHP <= 0);
     }
 
-     // Если игрок жив и врагов нет — победа
-        if (Player.Health.CurrentHP > 0)
+        if (Player.Health.CurrentHp > 0)
         {
             Debug.Log("Игрок победил!");
             // открыть магазин, загрузить UI
