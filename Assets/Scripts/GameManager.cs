@@ -52,8 +52,10 @@ public class GameManager : MonoBehaviour
             // Ход игрока
             if (CurrentEnemies.Count > 0)
             {
-                var targetEnemy = CurrentEnemies[0];
 
+                
+                var targetEnemy = CurrentEnemies[0];
+                
                 if (PlayerMovement != null)
                     PlayerMovement.PlayAttack(targetEnemy.transform.position);
 
@@ -72,6 +74,7 @@ public class GameManager : MonoBehaviour
             {
                 if (e.Health.CurrentHp > 0)
                 {
+                    e.Attack.SetTarget(Player.Health); 
                     var enemyMovement = e.GetComponent<AttackMovement>();
 
                     if (enemyMovement != null)
