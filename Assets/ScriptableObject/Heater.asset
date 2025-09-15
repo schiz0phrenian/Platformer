@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Heater
   prefab: {fileID: 4317296422966777266, guid: d5b75a57c47d5184a918065c8b33731c, type: 3}
-  maxHp: 100
+  maxHp: 30
   damage: 2

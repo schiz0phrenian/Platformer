@@ -6,7 +6,10 @@ public class Entity : MonoBehaviour
 {
     public Health Health;
     public Attack Attack;
-
+    public int Coins = 5;
+    [Header("Награда за убийство")]
+    public int MinCoins = 5;
+    public int MaxCoins = 10;
 
     //Восстановления состояния
     public void Restore()

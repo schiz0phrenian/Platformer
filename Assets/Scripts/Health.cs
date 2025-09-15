@@ -45,6 +45,6 @@ public class Health : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} погиб!");
         OnDeath?.Invoke();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
