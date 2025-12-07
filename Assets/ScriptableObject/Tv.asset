@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tv
   m_EditorClassIdentifier: 
   enemyName: Tv
-  prefab: {fileID: 6658820325607857830, guid: 3f49463d710f31f489b839e653651ff2, type: 3}
+  prefab: {fileID: 8877830550316962801, guid: 3f49463d710f31f489b839e653651ff2, type: 3}
   maxHp: 15
   damage: 1
+  reward: 1

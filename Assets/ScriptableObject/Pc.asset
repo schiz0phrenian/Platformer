@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pc
   m_EditorClassIdentifier: 
   enemyName: Pc
-  prefab: {fileID: 7929925594470623959, guid: 85d4fb0ed3d7c7c40b4c438138ba2530, type: 3}
+  prefab: {fileID: 4903417188921226101, guid: 85d4fb0ed3d7c7c40b4c438138ba2530, type: 3}
   maxHp: 10
   damage: 5
+  reward: 10

@@ -6,24 +6,25 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    public Entity player;
-    public BattleLog battleLog;
+    public Player player;
 
     public void BuyHelmet()
     {
-        player.Health.MaxHealth += 10;
-        player.Health.CurrentHp = player.Health.MaxHealth;
-        battleLog.AddMessage("Куплен шлем (+10 HP)");
+        if(player.coins >= 5){
+            player.maxHealth += 10;
+            player.currentHp = player.maxHealth;
+        }
     }
     public void BuyWeapon()
     {
-        player.Attack.Damage += 5;
-        battleLog.AddMessage("Вы купили оружие(+5 DMG)");
+        player.damage += 5;
     }
     public void BuyArtifact()
-    {
+    {   
         //добавлю разные статы
-        battleLog.AddMessage("Вы купили аретфакт");
+        player.damage += 2;
+        player.maxHealth += 5;
+        player.currentHp = player.maxHealth;
     }
 
 }

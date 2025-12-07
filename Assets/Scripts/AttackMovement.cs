@@ -1,39 +1,33 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class AttackMovement : MonoBehaviour
 {
-    public float moveDistance = 0.5f;   // на сколько юнит двигается
-    public float moveSpeed = 4f;        // скорость движения
-
     private Vector3 startPos;
+    public float moveDistance = 1f;
+    public float speed = 6f;
 
-    public void PlayAttack(Vector3 targetPosition)
+    public IEnumerator PlayAttack(bool moveRight)
     {
-        if (!isActiveAndEnabled) return;
-        StopAllCoroutines();
         startPos = transform.position;
-        StartCoroutine(AttackCoroutine(targetPosition));
-    }
+        Vector3 targetPos = startPos + (moveRight ? Vector3.right : Vector3.left) * moveDistance;
 
-    private IEnumerator AttackCoroutine(Vector3 targetPosition)
-    {
-        Vector3 attackPos = startPos + (targetPosition - startPos).normalized * moveDistance;
-
-        // Двигаемся к цели
-        while (Vector3.Distance(transform.position, attackPos) > 0.01f)
+        // движение вперёд
+        while (Vector3.Distance(transform.position, targetPos) > 0.01f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, attackPos, moveSpeed * Time.deltaTime);
+            if (this == null) yield break;
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             yield return null;
         }
 
-        // Немного задержка для удара
+        // небольшая задержка (удар)
         yield return new WaitForSeconds(0.1f);
 
-        // Возвращаемся на старт
+        // возвращение назад
         while (Vector3.Distance(transform.position, startPos) > 0.01f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, startPos, moveSpeed * Time.deltaTime);
+            if(this == null) yield break;
+            transform.position = Vector3.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
             yield return null;
         }
     }
