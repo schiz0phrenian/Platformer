@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6368669753364242162}
   currentEnemy: {fileID: 2532623794183824717, guid: 85d4fb0ed3d7c7c40b4c438138ba2530, type: 3}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1355038639}
   shopPanel: {fileID: 1681508376}
   battlePanel: {fileID: 973987837}
 --- !u!1 &1681508376
