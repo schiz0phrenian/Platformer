@@ -7,24 +7,18 @@ using UnityEngine.UI;
 public class Shop : MonoBehaviour
 {
     public Player player;
-
-    public void BuyHelmet()
+    
+    public void BuyArtefact(ArtefactSO artefact)
     {
-        if(player.coins >= 5){
-            player.maxHealth += 10;
-            player.currentHp = player.maxHealth;
+        if(player.coins >= artefact.cost)
+        {
+            player.coins -= artefact.cost;
+            artefact.Apply(player);//Вызывает эффект артефакта на игроке
         }
+        else
+        {
+            Debug.Log("No money");
+        }
+        
     }
-    public void BuyWeapon()
-    {
-        player.damage += 5;
-    }
-    public void BuyArtifact()
-    {   
-        //добавлю разные статы
-        player.damage += 2;
-        player.maxHealth += 5;
-        player.currentHp = player.maxHealth;
-    }
-
 }

@@ -18,6 +18,7 @@ public class BattleManager : MonoBehaviour
         currentEnemy = e;
         StartCoroutine(BattleLoop());
     }
+
     private IEnumerator BattleLoop()
     {
         yield return new WaitForSeconds(1f);
@@ -49,18 +50,16 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    void OpenShop()
+    public void OpenShop()
     {
         shopPanel.SetActive(true);
         battlePanel.SetActive(false);
-        Debug.Log("Магазин открыт");
     }
     public void CloseShop()
     {
         shopPanel.SetActive(false);
         battlePanel.SetActive(true);
         gameManager.SpawnEnemy();
-        Debug.Log("начало битвы");
     }
 
 }

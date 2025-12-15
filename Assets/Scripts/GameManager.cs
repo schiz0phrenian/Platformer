@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Player player;
-    public List<SO> enemies;
+    public List<EnemySO> enemies;
     public BattleManager battleManager;
     public AttackMovement PlayerMovement;
 
@@ -14,13 +14,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SpawnEnemy();
+        battleManager.OpenShop();
     }
 
     public void SpawnEnemy()
     {
         var so = enemies[Random.Range(0, enemies.Count)];
-        var enemyObj = Instantiate(so.prefab, new Vector3(5, 0, 0), Quaternion.identity); // xz
+        var enemyObj = Instantiate(so.prefab, new Vector3(3, -1, 0), Quaternion.identity); // xz
         var enemy = enemyObj.GetComponent<Enemy>();
         enemy.data = so;
 

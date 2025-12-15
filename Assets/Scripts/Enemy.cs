@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public SO data;
+    public EnemySO data;
     public int currentHp;
     public AttackMovement movement;
 
@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        if (movement != null)
+        movement.StopAllCoroutines();
         // начинаем корутину уничтожения
         StartCoroutine(DieCoroutine());
     }
@@ -35,8 +37,8 @@ public class Enemy : MonoBehaviour
         // даём награду игроку
         Player player = FindObjectOfType<Player>();
         if (player != null)
-            player.OnAttackEnemy(this);
-
+            player.OnEnemyKilled(data.reward);
+            
         // теперь уничтожаем объект
         Destroy(gameObject);
     }

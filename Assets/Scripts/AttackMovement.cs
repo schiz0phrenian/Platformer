@@ -15,7 +15,6 @@ public class AttackMovement : MonoBehaviour
         // движение вперёд
         while (Vector3.Distance(transform.position, targetPos) > 0.01f)
         {
-            if (this == null) yield break;
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             yield return null;
         }
@@ -26,9 +25,14 @@ public class AttackMovement : MonoBehaviour
         // возвращение назад
         while (Vector3.Distance(transform.position, startPos) > 0.01f)
         {
-            if(this == null) yield break;
             transform.position = Vector3.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
             yield return null;
         }
+    }
+
+    // Эта функция автоматически вызывается при уничтожении объекта
+    void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }

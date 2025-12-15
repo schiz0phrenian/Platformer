@@ -20,12 +20,6 @@ public class Player : MonoBehaviour
         currentHp = maxHealth;
     }
 
-    public void InitHealth(int value)
-    {
-        maxHealth = value;
-        currentHp = maxHealth;
-    }
-
     public void OnAttackEnemy(Enemy enemy)
     {
         enemy.TakeDamage(damage);
