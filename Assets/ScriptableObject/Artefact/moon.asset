@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: moon
   m_EditorClassIdentifier: 
   artefactName: Moon
+  description: Increase your base damage
   icon: {fileID: 21300000, guid: b99ce56dc86b74d46ae0e795f7786907, type: 3}
   cost: 20
   damage: 5

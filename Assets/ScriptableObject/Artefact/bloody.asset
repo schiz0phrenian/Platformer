@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: bloody
   m_EditorClassIdentifier: 
   artefactName: Bloody
+  description: 'Increase your maximum health '
   icon: {fileID: 21300000, guid: 9764f2f875e431e42b3d1b6d686aa291, type: 3}
   cost: 10
   bonusHp: 5
