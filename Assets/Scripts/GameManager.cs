@@ -7,14 +7,13 @@ public class GameManager : MonoBehaviour
     public Player player;
     public List<EnemySO> enemies;
     public BattleManager battleManager;
-    public AttackMovement PlayerMovement;
 
     [Header("UI Panels")]
     public GameObject ShopPanel;
 
     void Start()
     {
-        battleManager.OpenShop();
+        battleManager.OpenMain();
     }
 
     public void SpawnEnemy()

@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!28 &-4257117910141434649
+--- !u!28 &-3312727245343023381
 Texture2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: minecraft SDF Atlas
+  m_Name: minecraft_0 SDF Atlas
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -58,14 +58,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: minecraft SDF
+  m_Name: minecraft_0 SDF
   m_EditorClassIdentifier: 
-  hashCode: -113204196
-  material: {fileID: 1583897620413337097}
-  materialHashCode: -131109572
+  hashCode: -1496117357
+  material: {fileID: 4104158678090251036}
+  materialHashCode: -1954713261
   m_Version: 1.1.0
-  m_SourceFontFileGUID: 51565cf4a8b6d92409d9b9aa3c9880f9
-  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 51565cf4a8b6d92409d9b9aa3c9880f9, type: 3}
+  m_SourceFontFileGUID: 1c36bfee0a3d5fb4aa5e5e70d334cda5
+  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 1c36bfee0a3d5fb4aa5e5e70d334cda5, type: 3}
   m_SourceFontFile: {fileID: 0}
   m_AtlasPopulationMode: 0
   m_FaceInfo:
@@ -4976,7 +4976,7 @@ MonoBehaviour:
     m_GlyphIndex: 271
     m_Scale: 1
   m_AtlasTextures:
-  - {fileID: -4257117910141434649}
+  - {fileID: -3312727245343023381}
   m_AtlasTextureIndex: 0
   m_IsMultiAtlasTexturesEnabled: 0
   m_ClearDynamicDataOnBuild: 0
@@ -6238,7 +6238,7 @@ MonoBehaviour:
   m_FallbackFontAssetTable: []
   m_CreationSettings:
     sourceFontFileName: 
-    sourceFontFileGUID: 51565cf4a8b6d92409d9b9aa3c9880f9
+    sourceFontFileGUID: 1c36bfee0a3d5fb4aa5e5e70d334cda5
     pointSizeSamplingMode: 0
     pointSize: 29
     padding: 5
@@ -6281,14 +6281,14 @@ MonoBehaviour:
   boldSpacing: 7
   italicStyle: 35
   tabSize: 10
---- !u!21 &1583897620413337097
+--- !u!21 &4104158678090251036
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: minecraft SDF Material
+  m_Name: minecraft_0 SDF Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -6317,7 +6317,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: -4257117910141434649}
+        m_Texture: {fileID: -3312727245343023381}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:

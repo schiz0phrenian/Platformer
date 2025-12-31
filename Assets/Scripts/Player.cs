@@ -12,8 +12,7 @@ public class Player : MonoBehaviour
     public int currentHp;
     public int damage = 2;
     public int coins = 0;
-    [Header("Компоненты")]
-    public AttackMovement movement;
+
 
     void Awake()
     {
@@ -44,12 +43,5 @@ public class Player : MonoBehaviour
     {
         coins += reward;
     }
-
-    public IEnumerator AttackAnimation(Enemy enemy)
-    {
-        yield return movement.PlayAttack(true);
-
-    }
-
     
 }

@@ -7,7 +7,7 @@ public class BattleManager : MonoBehaviour
     public Player player;
     public Enemy currentEnemy;
     public GameManager gameManager;
-    public GameObject shopPanel;
+    public GameObject mainPanel;
     public GameObject battlePanel;
 
     private bool playerTurn = true;
@@ -26,13 +26,11 @@ public class BattleManager : MonoBehaviour
         {
             if (playerTurn)
             {
-                yield return player.AttackAnimation(currentEnemy);
                 player.OnAttackEnemy(currentEnemy);
                 playerTurn = false;
             }
             else
             {
-                yield return currentEnemy.AttackAnimation(player);
                 currentEnemy.OnAttackPlayer(player);
                 playerTurn = true;
             }
@@ -41,7 +39,7 @@ public class BattleManager : MonoBehaviour
         if(player.currentHp > 0)
         {
             Debug.Log("Победа");
-            OpenShop();
+            OpenMain();
             
         }
         else
@@ -50,14 +48,14 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void OpenShop()
+    public void OpenMain()
     {
-        shopPanel.SetActive(true);
+        mainPanel.SetActive(true);
         battlePanel.SetActive(false);
     }
-    public void CloseShop()
+    public void CloseMain()
     {
-        shopPanel.SetActive(false);
+        mainPanel.SetActive(false);
         battlePanel.SetActive(true);
         gameManager.SpawnEnemy();
     }

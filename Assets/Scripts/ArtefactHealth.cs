@@ -5,7 +5,6 @@ using UnityEngine;
 public class ArtefactHealth : ArtefactSO
 {
    public int bonusHp;
-
     public override void Apply(Player player) // берем родительский компонент
     {
         player.maxHealth += bonusHp;
