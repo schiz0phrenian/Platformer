@@ -7,57 +7,61 @@ public class BattleManager : MonoBehaviour
     public Player player;
     public Enemy currentEnemy;
     public GameManager gameManager;
-    public GameObject mainPanel;
-    public GameObject battlePanel;
-
-    private bool playerTurn = true;
-
+  
+    private bool battleActive;
     public void StartBattle(Player p, Enemy e)
     {
         player = p;
         currentEnemy = e;
+
+        player.playerTurn = 0f;
+        currentEnemy.enemyTurn = 0f;
+
+        battleActive = true;
         StartCoroutine(BattleLoop());
     }
 
     private IEnumerator BattleLoop()
     {
         yield return new WaitForSeconds(1f);
-        while (player.currentHp >= 0 && currentEnemy.currentHp >= 0)
+        
+        while (battleActive)
         {
-            if (playerTurn)
+            if (player.currentHp <= 0 || currentEnemy.currentHp <= 0)
+                break;  
+            //накопление шкалы
+            player.playerTurn += player.speed * Time.deltaTime;
+            currentEnemy.enemyTurn += currentEnemy.speed * Time.deltaTime;
+
+
+            if (player.playerTurn >= 100f)
             {
+                player.playerTurn = 0f;
                 player.OnAttackEnemy(currentEnemy);
-                playerTurn = false;
             }
-            else
+            if (currentEnemy.enemyTurn >= 100f)
             {
+                currentEnemy.enemyTurn = 0f;
                 currentEnemy.OnAttackPlayer(player);
-                playerTurn = true;
             }
-            yield return new WaitForSeconds(1f);
+
+            yield return null;
         }
+
+        battleActive = false;
+        
         if(player.currentHp > 0)
         {
-            Debug.Log("Победа");
-            OpenMain();
-            
+            Debug.Log("Win");
+            gameManager.OpenMain();
         }
+
         else
         {
-            Debug.Log("Поражение");
+            Debug.Log("Lose");
+            gameManager.OpenMain();
         }
     }
 
-    public void OpenMain()
-    {
-        mainPanel.SetActive(true);
-        battlePanel.SetActive(false);
-    }
-    public void CloseMain()
-    {
-        mainPanel.SetActive(false);
-        battlePanel.SetActive(true);
-        gameManager.SpawnEnemy();
-    }
-
+    
 }

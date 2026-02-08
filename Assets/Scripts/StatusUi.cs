@@ -9,6 +9,8 @@ public class StatusUi : MonoBehaviour
     public TMP_Text hpText;
     public TMP_Text dmgText;
     public TMP_Text coinsText;
+
+    public TMP_Text speedText;
     void Awake()
     {
         player.currentHp = player.maxHealth;
@@ -19,6 +21,7 @@ public class StatusUi : MonoBehaviour
         {
             hpText.text = $"{player.currentHp}/{player.maxHealth}";
             dmgText.text = $"{player.damage}";
+            speedText.text = $"{player.speed}";
             coinsText.text = $"{player.coins}";
         }
     }

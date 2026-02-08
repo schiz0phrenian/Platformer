@@ -15,5 +15,5 @@ MonoBehaviour:
   enemyName: Tv
   prefab: {fileID: 8877830550316962801, guid: 3f49463d710f31f489b839e653651ff2, type: 3}
   maxHp: 15
-  damage: 1
+  damage: 10
   reward: 10

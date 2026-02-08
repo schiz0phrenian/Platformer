@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 {
     public EnemySO data;
     public int currentHp;
+    public float speed = 8f;
+    [HideInInspector] public float enemyTurn = 0f;
     void Awake()
     {
         currentHp = data.maxHp;

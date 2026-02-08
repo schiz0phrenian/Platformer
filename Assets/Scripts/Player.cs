@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     public int currentHp;
     public int damage = 2;
     public int coins = 0;
-
-
+    public float speed = 10f; //скорость заполнения шкалы
+    [HideInInspector] public float playerTurn = 0f;
     void Awake()
     {
         currentHp = maxHealth;
